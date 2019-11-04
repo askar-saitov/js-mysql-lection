@@ -4,67 +4,13 @@ const ut = require("./utils");
 
 const connection = mysql.createConnection(ut.conn);
 
-let query = "SELECT * FROM smartphones";
-sql = "INSERT INTO smartphones (id, name1, name2, name3, group_num) ";
+let query = "INSERT INTO smartphones (name, time, power) ";
+query += "VALUES ('smart', 10, 10)";
 
-var get_data = function (query, password) {
-	connection.query(query, function (err, results) {
-		new Promise(function (resolve, reject) {
-			if (err) throw err;
-			connection.query(
-				"SELECT * FROM users WHERE login = 'admin' LIMIT 1",
-				(err_2, data) => {
-					if (data[0].password == password)
-						resolve(results);
-					else {
-						resolve([]);
-					}
-				}
-			)
-		}).then(array => {
-			if (array.length > 0) {
-				dialog(array);
-			}
-			else {
-				console.log("Пароль не подходит :("); 
-			}
-			ut.stop(connection);
-		})
-	})
+
+var set_data = function (query, arr) {
+	connection.execute(query, () => console.log('Данные добавлены'));
 }
 
-let dialog = function (results) {	
-	console.clear();	
-	ut.menu.map(item => console.log(item));
-
-	answer = Number(readln.question());
-	switch (answer) {
-		case 1: {
-			results
-				.map(item =>
-					console.log(item.name + '\t' + item.time + '\t' + item.power));
-			break;
-		}
-		case 2: {
-			results
-				.sort((a, b) => a.time - b.time)
-				.map(item =>
-					console.log(item.name + '\t' + item.time + '\t' + item.power));
-			break;
-		}
-		case 3: {
-			results
-				.sort((a, b) => a.power - b.power)
-				.map(item =>
-					console.log(item.name + '\t' + item.time + '\t' + item.power));
-			break;
-		}
-		default: {
-
-		}
-	}
-}
-
-let password = 'admin';
-password = readln.question('Your password? -> ');
-get_data(query, password);
+set_data(query, []);
+ut.stop(connection);
