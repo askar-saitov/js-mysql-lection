@@ -1,5 +1,5 @@
-## js-mysql-lection  
-# Способы работы с MySQL из node.js  
+# js-mysql-lection  
+## Способы работы с MySQL из node.js  
 
 0. Подключение библиотеки.
 0. Создание соединения с БД.
@@ -13,6 +13,8 @@
 * connection.query();  
 * connection.end();  
 ---  
+**CONNECT**  
+    start_01  
 **SELECT**  
     start_02 - start_10  
 **INSERT**  
