@@ -14,6 +14,10 @@
    connection.end();  
 - - -
 SELECT  
+   start_02 - start_10
 INSERT  
+   start_11
 UPDATE  
+   start_12
 DELETE  
+   start_13
